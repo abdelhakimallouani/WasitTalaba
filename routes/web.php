@@ -1,9 +1,8 @@
 <?php
 
+use App\Http\Controllers\LogementController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\RoleMiddleware;
-use App\Http\Controllers\LogementController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,26 +16,25 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::middleware('role:student')->group(function () {
-        Route::get('/logments',[LogementController::class,'index'])->name('logments.index');
-        Route::get('/logments/{logement}',[LogementController::class,'show'])->name('logments.show');
-
-    });
-
+    
     Route::middleware('role:owner')->group(function () {
-        Route::get('/mylogments',[LogementController::class,'myLogments'])->name('logments.index');
-        Route::get('/logments/create',[LogementController::class,'create'])->name('logments.create');
-        Route::post('/logments',[LogementController::class,'store'])->name('logments.store');
-        Route::get('/logments/{logement}/edit',[LogementController::class,'edit'])->name('logments.edit');
-        Route::put('/logments/{logement}',[LogementController::class,'update'])->name('logments.update');
-        Route::delete('/logments/{logement}',[LogementController::class,'destroy'])->name('logments.destroy');
+        Route::get('/mylogements', [LogementController::class, 'myLogments'])->name('logements.my');
+        Route::get('/logements/create', [LogementController::class, 'create'])->name('logements.create');
+        Route::post('/logements', [LogementController::class, 'store'])->name('logements.store');
+        Route::get('/logements/{logement}/edit', [LogementController::class, 'edit'])->name('logements.edit');
+        Route::put('/logements/{logement}', [LogementController::class, 'update'])->name('logements.update');
+        Route::delete('/logements/{logement}', [LogementController::class, 'destroy'])->name('logements.destroy');
     });
+    Route::middleware('role:student')->group(function () {
+        Route::get('/logements', [LogementController::class, 'index'])->name('logements.index');
+        Route::get('/logements/{logement}', [LogementController::class, 'show'])->name('logements.show');
+
+    });
+
 
     Route::middleware('role:admin')->group(function () {
         // admin route
     });
 });
-
 
 require __DIR__.'/auth.php';

@@ -14,4 +14,11 @@
             </div>
         </div>
     </div>
+    @if (auth()->user()->role =='owner')
+        <p>Welcome, owner!</p>
+        <button><a href="{{ route('logements.create') }}">Create Logement</a></button>
+    @else
+        <p>Welcome, student!</p>
+    @endif
+
 </x-app-layout>
