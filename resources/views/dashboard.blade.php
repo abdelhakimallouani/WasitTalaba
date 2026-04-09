@@ -17,6 +17,7 @@
     @if (auth()->user()->role =='owner')
         <p>Welcome, owner!</p>
         <button><a href="{{ route('logements.create') }}">Create Logement</a></button>
+        <button><a href="{{ route('logements.my') }}">View Logements</a></button>
     @else
         <p>Welcome, student!</p>
     @endif

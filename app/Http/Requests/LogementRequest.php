@@ -23,7 +23,7 @@ class LogementRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'max:255'],
+            'titre' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'prix' => ['required', 'numeric', 'min:0'],
             'type' => ['required', 'string', 'max:255'],
@@ -31,6 +31,9 @@ class LogementRequest extends FormRequest
             'adresse' => ['required', 'string', 'max:255'],
             'latitude' => ['required', 'numeric'],
             'longitude' => ['required', 'numeric'],
+
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

@@ -12,7 +12,7 @@
     <p style="color:green">{{ session('success') }}</p>
 @endif
 
-<form action="{{ route('logements.store') }}" method="POST">
+<form action="{{ route('logements.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div>
@@ -53,6 +53,10 @@
     <div>
         <label>Longitude:</label>
         <input type="text" name="longitude" value="{{ old('longitude') }}">
+    </div>
+    <div>
+        <label>Image:</label>
+        <input type="file" name="images[]" multiple>
     </div>
 
     <button type="submit">Ajouter</button>

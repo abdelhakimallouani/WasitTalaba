@@ -18,8 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
     Route::middleware('role:owner')->group(function () {
-        Route::get('/mylogements', [LogementController::class, 'myLogments'])->name('logements.my');
         Route::get('/logements/create', [LogementController::class, 'create'])->name('logements.create');
+        Route::get('/mylogements', [LogementController::class, 'myLogments'])->name('logements.my');
         Route::post('/logements', [LogementController::class, 'store'])->name('logements.store');
         Route::get('/logements/{logement}/edit', [LogementController::class, 'edit'])->name('logements.edit');
         Route::put('/logements/{logement}', [LogementController::class, 'update'])->name('logements.update');
