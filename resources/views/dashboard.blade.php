@@ -20,6 +20,7 @@
         <button><a href="{{ route('logements.my') }}">View Logements</a></button>
     @else
         <p>Welcome, student!</p>
+        <button><a href="{{ route('logements.index') }}">View Tous les Logements</a></button>
     @endif
 
 </x-app-layout>

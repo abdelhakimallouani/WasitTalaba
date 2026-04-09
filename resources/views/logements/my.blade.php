@@ -6,6 +6,8 @@
 </head>
 
 <body>
+    
+    <a href="{{ route('dashboard') }}">Back to Dashboard</a>
 
     <h2>Liste des logements</h2>
 
