@@ -31,7 +31,7 @@
     </div>
 
     <div>
-        <label>Type:</label>
+        <label>Type: (appartement, chambre ou studio)</label>
         <input type="text" name="type" value="{{ old('type') }}">
     </div>
 

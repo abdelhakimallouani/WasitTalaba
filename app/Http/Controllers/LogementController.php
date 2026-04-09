@@ -19,11 +19,11 @@ class LogementController extends Controller
         if ($request->filled('type')) {
             $query->where('type', $request->input('type'));
         }
-        if ($request->filled('prix_min')) {
-            $query->where('prix', '>=', $request->input('prix_min'));
-        }
-        if ($request->filled('prix_max')) {
-            $query->where('prix', '<=', $request->input('prix_max'));
+        if ($request->filled('prix_range')) {
+
+            [$min, $max] = explode('-', $request->prix_range);
+
+            $query->whereBetween('prix', [$min, $max]);
         }
 
         // hadi dyaal filtre b distance km 3la wed maps ola leaflet
@@ -32,7 +32,7 @@ class LogementController extends Controller
 
             $lat = $request->latitude;
             $lng = $request->longitude;
-            $distance = $request->distance; 
+            $distance = $request->distance;
 
             $query->whereRaw('
             (6371 * acos(

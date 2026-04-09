@@ -25,14 +25,29 @@
                 <option value="studio" {{ request('type') == 'studio' ? 'selected' : '' }}>Studio</option>
             </select>
         </div>
-        <div>
-            <label for="prix_min">Prix Min:</label>
-            <input type="number" name="prix_min" id="prix_min" value="{{ request('prix_min') }}">
-        </div>
-        <div>
-            <label for="prix_max">Prix Max:</label>
-            <input type="number" name="prix_max" id="prix_max" value="{{ request('prix_max') }}">
-        </div>
+        <select name="prix_range">
+            <option value="">Prix</option>
+
+            <option value="0-100" {{ request('prix_range') == '0-100' }}>
+                0 - 100 DH
+            </option>
+
+            <option value="100-500" {{ request('prix_range') == '100-500' }}>
+                100 - 500 DH
+            </option>
+
+            <option value="500-1000" {{ request('prix_range') == '500-1000' }}>
+                500 - 1000 DH
+            </option>
+
+            <option value="1000-2000" {{ request('prix_range') == '1000-2000' }}>
+                1000 - 2000 DH
+            </option>
+
+            <option value="2000-99999" {{ request('prix_range') == '2000-99999' }}>
+                +2000 DH
+            </option>
+        </select>
         <div>
             <input type="hidden" name="latitude" id="lat">
             <input type="hidden" name="longitude" id="lng">
@@ -54,7 +69,6 @@
                     <img src="https://via.placeholder.com/250x150" width="100%">
                 @endif
 
-                {{-- infos --}}
                 <h3>{{ $logement->titre }}</h3>
 
         </a>
@@ -68,7 +82,7 @@
         </form>
 
         </div>
-        @if($logement == null)
+        @if ($logement == null)
             <p>Aucun logement </p>
         @endif
     @endforeach
