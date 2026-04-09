@@ -17,9 +17,8 @@ class LogementController extends Controller
         return view('logements.index', compact('logements'));
     }
 
-    public function show($id)
+    public function show(Logement $logement)
     {
-        // code to show a single logement
     }
 
     public function myLogments()
@@ -62,13 +61,37 @@ class LogementController extends Controller
         return redirect()->back()->with('success', 'Logement created');
     }
 
-    public function update(LogementRequest $request, $id)
+    public function update(LogementRequest $request, Logement $logement)
     {
-        // code to update a logement
+        $logement->update($request->validated());
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('logements', 'public');
+                LogementImage::create([
+                    'logement_id' => $logement->id,
+                    'image_path' => $path,
+                ]);
+            }
+        }
+        return redirect()->back()->with('success', 'Logement updated');
     }
 
-    public function destroy($id)
+    public function edit(Logement $logement)
     {
-        // code to delete a logement
+        return view('logements.edit', compact('logement'));
+    }   
+
+    public function destroy(Logement $logement)
+    {
+        foreach($logement->images as $image) {
+            $filePath = storage_path('app/public/' . $image->image_path);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+            $image->delete();
+        }
+        $logement->delete();
+        return redirect()->back()->with('success', 'Logement deleted');
     }
 }
