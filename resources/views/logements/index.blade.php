@@ -57,43 +57,42 @@
         <button type="submit">Filtrer</button>
     </form>
 
-
-    @foreach ($logements as $logement)
-        <a href="{{ route('logements.show', $logement) }}">
+    <div style="display:flex; flex-wrap:wrap; gap:20px;">
+        @forelse ($logements as $logement)
             <div style="border:1px solid #ccc; padding:10px; margin:10px; width:250px">
+                <a href="{{ route('logements.show', $logement) }}">
 
-                @if ($logement->images->first())
-                    <img src="{{ asset('storage/' . $logement->images->first()->image_path) }}" width="100%"
-                        height="150" style="object-fit:cover">
-                @else
-                    <img src="https://via.placeholder.com/250x150" width="100%">
-                @endif
+                    @if ($logement->images->first())
+                        <img src="{{ asset('storage/' . $logement->images->first()->image_path) }}" width="100%"
+                            height="150" style="object-fit:cover">
+                    @else
+                        <img src="https://via.placeholder.com/250x150" width="100%">
+                    @endif
 
-                <h3>{{ $logement->titre }}</h3>
+                    <h3>{{ $logement->titre }}</h3>
+                </a>
+                <p>{{ $logement->ville }}</p>
+                <p>{{ $logement->prix }} DH</p>
+                <a href="{{ route('logements.edit', $logement) }}">Edit</a>
+                <form action="{{ route('logements.destroy', $logement) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Delete</button>
+                </form>
 
-        </a>
-        <p>{{ $logement->ville }}</p>
-        <p>{{ $logement->prix }} DH</p>
-        <a href="{{ route('logements.edit', $logement) }}">Edit</a>
-        <form action="{{ route('logements.destroy', $logement) }}" method="POST" style="display:inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit">Delete</button>
-        </form>
-
-        </div>
-        @if ($logement == null)
+            </div>
+        @empty
             <p>Aucun logement </p>
-        @endif
-    @endforeach
+        @endforelse
+    </div>
 </body>
 
-
+{{-- 
 <script>
     navigator.geolocation.getCurrentPosition(function(position) {
         document.getElementById('lat').value = position.coords.latitude;
         document.getElementById('lng').value = position.coords.longitude;
     });
-</script>
+</script> --}}
 
 </html>

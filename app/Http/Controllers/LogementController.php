@@ -14,7 +14,7 @@ class LogementController extends Controller
         $query = Logement::with('images')->latest();
 
         if ($request->filled('ville')) {
-            $query->where('ville', $request->input('ville'));
+            $query->where('ville','like', '%' . $request->ville . '%');
         }
         if ($request->filled('type')) {
             $query->where('type', $request->input('type'));
@@ -50,7 +50,10 @@ class LogementController extends Controller
         return view('logements.index', compact('logements'));
     }
 
-    public function show(Logement $logement) {}
+    public function show(Logement $logement) {
+        $logement->load('images','user');
+        return view('logements.show', compact('logement'));
+    }
 
     public function myLogments()
     {
