@@ -27,5 +27,18 @@
 
 <p><strong>Proprietaire:</strong> {{ $logement->user->name }}</p>
 
+@if(auth()->user()->role == 'student')
+
+<form action="{{ route('reservations.store', $logement) }}" method="POST">
+    @csrf
+
+    <input type="date" name="date_debut" required>
+    <input type="date" name="date_fin" required>
+
+    <button type="submit">Réserver</button>
+</form>
+
+@endif
+
 </body>
 </html>

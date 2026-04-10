@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LogementController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:student')->group(function () {
         Route::get('/logements', [LogementController::class, 'index'])->name('logements.index');
         Route::get('/logements/{logement}', [LogementController::class, 'show'])->name('logements.show');
+
+        Route::post('/logements/{logement}/reserve', [ReservationController::class, 'store'])->name('reservations.store');
 
     });
 
