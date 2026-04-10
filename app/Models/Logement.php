@@ -27,4 +27,8 @@ class Logement extends Model
     {
         return $this->hasMany(LogementImage::class);
     }
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

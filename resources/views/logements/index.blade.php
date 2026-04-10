@@ -73,12 +73,6 @@
                 </a>
                 <p>{{ $logement->ville }}</p>
                 <p>{{ $logement->prix }} DH</p>
-                <a href="{{ route('logements.edit', $logement) }}">Edit</a>
-                <form action="{{ route('logements.destroy', $logement) }}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Delete</button>
-                </form>
 
             </div>
         @empty
