@@ -76,7 +76,7 @@
                     @csrf
                     <button type="submit" style="background:none; border:none; font-size:20px; cursor:pointer;">
 
-                        @if (auth()->user()->favoris->where('logement_id', $logement->id)->count())
+                        @if ($logement->is_favorite)
                             ❤️
                         @else
                             🤍

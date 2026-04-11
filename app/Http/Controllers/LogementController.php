@@ -132,4 +132,6 @@ class LogementController extends Controller
 
         return redirect()->back()->with('success', 'Logement deleted');
     }
+
+
 }

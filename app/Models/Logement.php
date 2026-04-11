@@ -35,4 +35,8 @@ class Logement extends Model
     {
         return $this->hasMany(Favori::class);
     }
+        public function getIsFavoriteAttribute()
+    {
+        return auth()->check() && $this->favoris()->where('user_id', auth()->id())->exists();
+    }
 }
