@@ -15,7 +15,7 @@
         </div>
     </div>
     @if (auth()->user()->role =='owner')
-        <p>Welcome, owner!</p>
+        <p>Welcome, owner!</p><br>
         <button><a href="{{ route('logements.create') }}">Create Logement</a></button><br><br>
         <button><a href="{{ route('logements.my') }}">View Logements</a></button><br><br>
         <button><a href="{{ route('reservations.index') }}">View Reservations</a></button>

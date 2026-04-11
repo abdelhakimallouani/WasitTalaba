@@ -11,6 +11,7 @@ class Reservation extends Model
         'logement_id',
         'date_debut',
         'date_fin',
+        'statut',
     ];
 
     public function user()

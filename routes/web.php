@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
         Route::get('/reservations/{reservation}', [ReservationController::class, 'show'])->name('reservations.show');
         Route::patch('/reservations/{reservation}/accept', [ReservationController::class, 'accept'])->name('reservations.accept');
-        Route::patch('/reservations/{reservation}/refuse', [ReservationController::class, 'refuse'])->name('reservations.refuse');
+        Route::patch('/reservations/{reservation}/reject', [ReservationController::class, 'reject'])->name('reservations.reject');
 
     });
     Route::middleware('role:student')->group(function () {

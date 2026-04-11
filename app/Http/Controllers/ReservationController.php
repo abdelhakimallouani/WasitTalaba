@@ -1,14 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Logement;
-use App\Models\Reservation;
-use App\Models\User;
-
 
 use App\Http\Requests\ReservationRequest;
+use App\Models\Logement;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
-
 
 class ReservationController extends Controller
 {
@@ -24,18 +21,28 @@ class ReservationController extends Controller
     public function show(Reservation $reservation)
     {
         $reservation->load('logement', 'user');
+
         return view('reservations.show', compact('reservation'));
     }
+
     public function accept(Reservation $reservation)
     {
-        $reservation->update(['statut'=> 'accepted']);
+        $reservation->update(['statut' => 'accepted']);
+
+        // $reservation->statut = 'accepted';
+        // $reservation->save();
+        // dd($reservation);
+
         return redirect()->back()->with('success', 'Reservation accepted');
     }
-    public function refuse(Reservation $reservation)
+
+    public function reject(Reservation $reservation)
     {
-        $reservation->update(['statut'=> 'refused']);
-        return redirect()->back()->with('success', 'Reservation refused');
+        $reservation->update(['statut' => 'rejected']);
+
+        return redirect()->back()->with('success', 'Reservation rejected');
     }
+
     public function store(ReservationRequest $request, Logement $logement)
     {
 
