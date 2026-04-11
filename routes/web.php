@@ -25,6 +25,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/logements/{logement}/edit', [LogementController::class, 'edit'])->name('logements.edit');
         Route::put('/logements/{logement}', [LogementController::class, 'update'])->name('logements.update');
         Route::delete('/logements/{logement}', [LogementController::class, 'destroy'])->name('logements.destroy');
+
+        Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
+        Route::get('/reservations/{reservation}', [ReservationController::class, 'show'])->name('reservations.show');
+        Route::patch('/reservations/{reservation}/accept', [ReservationController::class, 'accept'])->name('reservations.accept');
+        Route::patch('/reservations/{reservation}/refuse', [ReservationController::class, 'refuse'])->name('reservations.refuse');
+
     });
     Route::middleware('role:student')->group(function () {
         Route::get('/logements', [LogementController::class, 'index'])->name('logements.index');
