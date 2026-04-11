@@ -20,8 +20,9 @@
         <button><a href="{{ route('logements.my') }}">View Logements</a></button><br><br>
         <button><a href="{{ route('reservations.index') }}">View Reservations</a></button>
     @else
-        <p>Welcome, student!</p>
-        <button><a href="{{ route('logements.index') }}">View Tous les Logements</a></button>
+        <p>Welcome, student!</p><br><br>
+        <button><a href="{{ route('logements.index') }}">View Tous les Logements</a></button><br><br>
+        <button><a href="{{ route('favoris.index') }}">View Favoris</a></button>
     @endif
 
 </x-app-layout>

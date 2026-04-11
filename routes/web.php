@@ -3,6 +3,7 @@
 use App\Http\Controllers\LogementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\FavoriteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -37,6 +38,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/logements/{logement}', [LogementController::class, 'show'])->name('logements.show');
 
         Route::post('/logements/{logement}/reserve', [ReservationController::class, 'store'])->name('reservations.store');
+        Route::get('/favoris', [FavoriteController::class, 'index'])->name('favoris.index');
+        Route::post('/favoris/{logement}', [FavoriteController::class, 'store'])->name('favoris.store');
 
     });
 

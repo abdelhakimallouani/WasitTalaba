@@ -6,5 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Favori extends Model
 {
-    //
+    protected $fillable = [
+        'user_id',
+        'logement_id',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function logement()
+    {
+        return $this->belongsTo(Logement::class);
+    }
 }

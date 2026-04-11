@@ -71,6 +71,19 @@
 
                     <h3>{{ $logement->titre }}</h3>
                 </a>
+                <form action="{{ route('favoris.store', $logement) }}" method="POST"
+                    >
+                    @csrf
+                    <button type="submit" style="background:none; border:none; font-size:20px; cursor:pointer;">
+
+                        @if (auth()->user()->favoris->where('logement_id', $logement->id)->count())
+                            ❤️
+                        @else
+                            🤍
+                        @endif
+
+                    </button>
+                </form>
                 <p>{{ $logement->ville }}</p>
                 <p>{{ $logement->prix }} DH</p>
 
