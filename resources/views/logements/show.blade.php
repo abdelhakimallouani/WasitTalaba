@@ -7,9 +7,10 @@
 
 <body>
 
-    <a href="{{ route('logements.index') }}"> Back</a>
     @if (auth()->user()->role == 'owner')
         <a href="{{ route('logements.my', $logement) }}"> Back</a>
+    @else
+        <a href="{{ route('logements.index') }}"> Back</a>
     @endif
 
     <h2>{{ $logement->titre }}</h2>

@@ -21,6 +21,11 @@
             <a href="{{ route('reservations.show', $reservation) }}">
                 Voir details
             </a>
+            <form action="{{ route('reservations.destroy', $reservation) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Delete</button>
+            </form>
 
         </div>
     @empty

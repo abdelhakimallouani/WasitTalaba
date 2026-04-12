@@ -11,6 +11,7 @@ class ReservationController extends Controller
 {
     public function index(Request $request)
     {
+        
         $reservations = Reservation::whereHas('logement', function ($query) {
             $query->where('user_id', auth()->id());
         })->with('logement', 'user')->latest()->get();
@@ -55,5 +56,16 @@ class ReservationController extends Controller
         ]);
 
         return redirect()->route('logements.show', $logement)->with('success', 'Bon reservation ');
+    }
+
+    public function destroy(Reservation $reservation)
+    {
+        if ($reservation->logement->user_id != auth()->id()) {
+            abort(403);
+        }
+
+        $reservation->delete();
+
+        return redirect()->back()->with('success', 'Reservation deleted');
     }
 }

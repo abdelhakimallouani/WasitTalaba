@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/reservations/{reservation}', [ReservationController::class, 'show'])->name('reservations.show');
         Route::patch('/reservations/{reservation}/accept', [ReservationController::class, 'accept'])->name('reservations.accept');
         Route::patch('/reservations/{reservation}/reject', [ReservationController::class, 'reject'])->name('reservations.reject');
+        Route::delete('/reservations/{reservation}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 
     });
     Route::middleware('role:student')->group(function () {

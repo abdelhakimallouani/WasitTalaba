@@ -3,9 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Logement;
+use App\Models\User;
+
 
 class Reservation extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
         'user_id',
         'logement_id',
