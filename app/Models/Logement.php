@@ -39,4 +39,9 @@ class Logement extends Model
     {
         return auth()->check() && $this->favoris()->where('user_id', auth()->id())->exists();
     }
+
+    public function avis()
+    {
+        return $this->hasMany(Avis::class);
+    }
 }
