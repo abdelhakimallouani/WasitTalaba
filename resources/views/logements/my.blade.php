@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    
+
     <a href="{{ route('dashboard') }}">Back to Dashboard</a>
 
     <h2>Liste des logements</h2>
@@ -23,7 +23,6 @@
                     <img src="https://via.placeholder.com/250x150" width="100%">
                 @endif
 
-                {{-- infos --}}
                 <h3>{{ $logement->titre }}</h3>
                 <p>{{ $logement->ville }}</p>
                 <p>{{ $logement->prix }} DH</p>

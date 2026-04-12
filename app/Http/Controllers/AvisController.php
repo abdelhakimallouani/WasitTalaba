@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\AvisRequest;
 use App\Models\Avis;
 use App\Models\Logement;
-use App\Http\Requests\AvisRequest;
-
-use Illuminate\Http\Request;
 
 class AvisController extends Controller
 {
+    public function index() {}
+
     public function store(AvisRequest $request, Logement $logement)
     {
         Avis::create([
@@ -17,6 +18,7 @@ class AvisController extends Controller
             'note' => $request->note,
             'commentaire' => $request->commentaire,
         ]);
+
         return redirect()->route('logements.show', $logement);
     }
 }

@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\AvisController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\LogementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\FavoriteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,7 +19,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+
+    Route::get('/logements/{logement}', [LogementController::class, 'show'])->name('logements.show');
+
     Route::middleware('role:owner')->group(function () {
         Route::get('/logements/create', [LogementController::class, 'create'])->name('logements.create');
         Route::get('/mylogements', [LogementController::class, 'myLogments'])->name('logements.my');
@@ -35,14 +38,14 @@ Route::middleware('auth')->group(function () {
     });
     Route::middleware('role:student')->group(function () {
         Route::get('/logements', [LogementController::class, 'index'])->name('logements.index');
-        Route::get('/logements/{logement}', [LogementController::class, 'show'])->name('logements.show');
+        // Route::get('/logements/{logement}', [LogementController::class, 'show'])->name('logements.show');
 
         Route::post('/logements/{logement}/reserve', [ReservationController::class, 'store'])->name('reservations.store');
         Route::get('/favoris', [FavoriteController::class, 'index'])->name('favoris.index');
         Route::post('/favoris/{logement}', [FavoriteController::class, 'store'])->name('favoris.store');
-
+        Route::post('/avis/{logement}', [AvisController::class, 'store'])->name('avis.store');
+        Route::get('/avis/{logement}', [AvisController::class, 'index'])->name('avis.index');
     });
-
 
     Route::middleware('role:admin')->group(function () {
         // admin route

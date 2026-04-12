@@ -51,7 +51,7 @@ class LogementController extends Controller
     }
 
     public function show(Logement $logement) {
-        $logement->load('images','user');
+        $logement->load('images','avis.user');
         return view('logements.show', compact('logement'));
     }
 
