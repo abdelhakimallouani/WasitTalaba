@@ -3,9 +3,9 @@
 use App\Http\Controllers\AvisController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\LogementController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,8 +20,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::get('/logements/{logement}', [LogementController::class, 'show'])->name('logements.show');
 
     Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
     Route::get('/messages/{user}', [MessageController::class, 'show'])->name('messages.show');
@@ -53,6 +51,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/avis/{logement}', [AvisController::class, 'index'])->name('avis.index');
     });
 
+    Route::get('/logements/{logement}', [LogementController::class, 'show'])->name('logements.show');
     Route::middleware('role:admin')->group(function () {
         // admin route
     });
