@@ -37,7 +37,7 @@ class MessageController extends Controller
         Message::create([
             'sender_id' => auth()->id(),
             'receiver_id' => $user->id,
-            'content' => $request->content,
+            'contenu' => $request->contenu,
         ]);
 
         return redirect()->route('messages.show', $user);

@@ -1,3 +1,4 @@
+<a href="{{ route('dashboard') }}">back</a>
 <h2>Chat avec {{ $user->name }}</h2>
 
 <div style="border:1px solid #ccc; padding:10px; height:300px; overflow:auto;">

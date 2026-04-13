@@ -44,6 +44,8 @@
             <button type="submit">Réserver</button>
         </form>
 
+        <a href="{{ route('messages.show', $logement->user) }}">send message</a>
+
         <h3>Ajouter un avis</h3>
 
         <form action="{{ route('avis.store', $logement->id) }}" method="POST">

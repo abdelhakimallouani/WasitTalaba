@@ -23,7 +23,7 @@ class MessageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'content' => 'required|string|max:1000',
+            'contenu' => 'required|string|max:1000',
         ];
     }
 }
