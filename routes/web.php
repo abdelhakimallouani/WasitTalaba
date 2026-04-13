@@ -5,6 +5,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\LogementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,6 +22,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/logements/{logement}', [LogementController::class, 'show'])->name('logements.show');
+
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+    Route::get('/messages/{user}', [MessageController::class, 'show'])->name('messages.show');
+    Route::post('/messages/{user}', [MessageController::class, 'store'])->name('messages.store');
 
     Route::middleware('role:owner')->group(function () {
         Route::get('/logements/create', [LogementController::class, 'create'])->name('logements.create');

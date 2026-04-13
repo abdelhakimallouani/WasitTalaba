@@ -25,4 +25,6 @@
         <button><a href="{{ route('favoris.index') }}">View Favoris</a></button>
     @endif
 
+    <br><br><button><a href="{{ route('messages.index') }}">View Messages</a></button>
+
 </x-app-layout>
