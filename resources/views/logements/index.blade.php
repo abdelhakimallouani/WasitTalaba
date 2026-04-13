@@ -2,8 +2,10 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <title>Create Logement</title>
 </head>
+
 
 <body>
 
@@ -71,8 +73,7 @@
 
                     <h3>{{ $logement->titre }}</h3>
                 </a>
-                <form action="{{ route('favoris.store', $logement) }}" method="POST"
-                    >
+                <form action="{{ route('favoris.store', $logement) }}" method="POST">
                     @csrf
                     <button type="submit" style="background:none; border:none; font-size:20px; cursor:pointer;">
 
@@ -92,6 +93,53 @@
             <p>Aucun logement </p>
         @endforelse
     </div>
+    <div id="map" style="height:500px;"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script>
+        var map = L.map('map').setView([34.68, -1.91], 12);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+    </script>
+    <script>
+        var logements = @json($logements);
+
+        logements.forEach(function(logement) {
+            if (logement.latitude && logement.longitude) {
+                L.marker([logement.latitude, logement.longitude])
+                    .addTo(map)
+                    .bindPopup(`
+                    <b>${logement.titre}</b><br>
+                    ${logement.prix} DH<br>
+                    <a href="/logements/${logement.id}">Voir</a>
+                `);
+            }
+        });
+    </script>
+    <script>
+        var ecoles = @json($ecoles);
+
+        ecoles.forEach(function(ecole) {
+            L.marker([ecole.latitude, ecole.longitude], {
+                    icon: L.icon({
+                        iconUrl: 'https://cdn-icons-png.flaticon.com/512/3135/3135755.png',
+                        iconSize: [30, 30]
+                    })
+                })
+                .addTo(map)
+                .bindPopup(`<b>${ecole.nom}</b>`);
+        });
+    </script>
+    <script>
+        ecoles.forEach(function(ecole) {
+            L.circle([ecole.latitude, ecole.longitude], {
+                radius: 2000
+            }).addTo(map);
+        });
+    </script>
+
 </body>
 
 {{-- 

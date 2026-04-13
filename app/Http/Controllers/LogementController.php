@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LogementRequest;
 use App\Models\Logement;
 use App\Models\LogementImage;
+use App\Models\Ecole;
 use Illuminate\Http\Request;
 
 class LogementController extends Controller
@@ -46,8 +47,9 @@ class LogementController extends Controller
         }
 
         $logements = $query->with('images')->latest()->get();
+        $ecoles = Ecole::all();
 
-        return view('logements.index', compact('logements'));
+        return view('logements.index', compact('logements', 'ecoles'));
     }
 
     public function show(Logement $logement) {
