@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-    @if (auth()->user()->role =='owner')
+    @if (auth()->user()->role == 'owner')
         <p>Welcome, owner!</p><br>
         <button><a href="{{ route('logements.create') }}">Create Logement</a></button><br><br>
         <button><a href="{{ route('logements.my') }}">View Logements</a></button><br><br>
@@ -25,6 +25,9 @@
         <button><a href="{{ route('favoris.index') }}">View Favoris</a></button>
     @endif
 
-    <br><br><button><a href="{{ route('messages.index') }}">View Messages</a></button>
+    <br><br><button><a href="{{ route('messages.index') }}">View Messages</a></button><br><br>
+    <button><a href="{{ route('notifications.index') }}">View Notifications</a></button>
+
+    
 
 </x-app-layout>

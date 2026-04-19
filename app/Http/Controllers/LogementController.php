@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 
 class LogementController extends Controller
 {
+    public function home()
+    {
+        $logements = Logement::with('images')->latest()->get();
+        $ecoles = Ecole::all();
+
+        return view('home', compact('logements', 'ecoles'));
+    }
+
     public function index(Request $request)
     {
         $query = Logement::with('images')->latest();

@@ -6,6 +6,7 @@ use App\Http\Requests\ReservationRequest;
 use App\Models\Logement;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use App\Notifications\ReservationStatusNotification;
 
 class ReservationController extends Controller
 {
@@ -34,12 +35,20 @@ class ReservationController extends Controller
         // $reservation->save();
         // dd($reservation);
 
+        $reservation->load('logement', 'user');
+
+        $reservation->user->notify(new ReservationStatusNotification($reservation));
+
         return redirect()->back()->with('success', 'Reservation accepted');
     }
 
     public function reject(Reservation $reservation)
     {
         $reservation->update(['statut' => 'rejected']);
+
+        $reservation->load('logement', 'user');
+
+        $reservation->user->notify(new ReservationStatusNotification($reservation));
 
         return redirect()->back()->with('success', 'Reservation rejected');
     }

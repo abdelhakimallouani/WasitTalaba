@@ -93,6 +93,7 @@
             <p>Aucun logement </p>
         @endforelse
     </div>
+    <button onclick="toggleCircles()">Afficher / Masquer zones écoles</button>
     <div id="map" style="height:500px;"></div>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
@@ -102,8 +103,7 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap'
         }).addTo(map);
-    </script>
-    <script>
+
         var logements = @json($logements);
 
         logements.forEach(function(logement) {
@@ -117,8 +117,7 @@
                 `);
             }
         });
-    </script>
-    <script>
+
         var ecoles = @json($ecoles);
 
         ecoles.forEach(function(ecole) {
@@ -131,13 +130,36 @@
                 .addTo(map)
                 .bindPopup(`<b>${ecole.nom}</b>`);
         });
-    </script>
-    <script>
-        ecoles.forEach(function(ecole) {
-            L.circle([ecole.latitude, ecole.longitude], {
-                radius: 2000
-            }).addTo(map);
-        });
+
+        // ecoles.forEach(function(ecole) {
+        //     L.circle([ecole.latitude, ecole.longitude], {
+        //         radius: 2000
+        //     }).addTo(map);
+        // });
+        var circles = [];
+        var circlesVisible = false;
+
+        function toggleCircles() {
+            if (!circlesVisible) {
+                ecoles.forEach(function(ecole) {
+                    var circle = L.circle([ecole.latitude, ecole.longitude], {
+                        radius: 2000,
+                    }).addTo(map);
+
+                    circles.push(circle);
+                });
+
+                circlesVisible = true;
+
+            } else {
+                circles.forEach(function(circle) {
+                    map.removeLayer(circle);
+                });
+
+                circles = [];
+                circlesVisible = false;
+            }
+        }
     </script>
 
 </body>
