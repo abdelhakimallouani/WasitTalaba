@@ -25,7 +25,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/messages/{user}', [MessageController::class, 'show'])->name('messages.show');
     Route::post('/messages/{user}', [MessageController::class, 'store'])->name('messages.store');
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
-    // Route::post('/notifications/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
 
     Route::middleware('role:owner')->group(function () {
         Route::get('/logements/create', [LogementController::class, 'create'])->name('logements.create');
