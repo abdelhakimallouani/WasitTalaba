@@ -12,7 +12,7 @@ class LogementController extends Controller
 {
     public function home()
     {
-        $logements = Logement::with('images')->latest()->get();
+        $logements = Logement::with('images')->latest()->limit(4)->get();
         $ecoles = Ecole::all();
 
         return view('home', compact('logements', 'ecoles'));

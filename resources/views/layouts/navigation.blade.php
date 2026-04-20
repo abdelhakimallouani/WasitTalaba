@@ -4,9 +4,6 @@
             
             <div class="flex items-center gap-10">
                 <a href="{{ route('home') }}" class="flex items-center gap-2">
-                    <div class="bg-indigo-600 p-1.5 rounded-lg shadow-lg">
-                        <i class="fas fa-graduation-cap text-white text-lg"></i>
-                    </div>
                     <span class="text-2xl font-bold text-white tracking-tight">Wasit Talaba</span>
                 </a>
 

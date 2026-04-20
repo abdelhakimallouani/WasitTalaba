@@ -2,9 +2,6 @@
     <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-12 mb-16">
         <div class="col-span-1 md:col-span-1">
             <div class="flex items-center gap-2 mb-6">
-                <div class="bg-[#6366f1] p-1.5 rounded-lg">
-                    <i class="fas fa-graduation-cap text-white"></i>
-                </div>
                 <span class="text-2xl font-bold text-white">Wasit Talaba</span>
             </div>
             <p class="text-sm leading-relaxed opacity-70">
@@ -34,10 +31,10 @@
             <h4 class="text-white font-bold mb-6">Contact</h4>
             <ul class="space-y-4 text-sm opacity-70">
                 <li class="flex items-center gap-3"><i class="fas fa-envelope text-[#6366f1]"></i>
-                    support@wasit-talaba.com</li>
-                <li class="flex items-center gap-3"><i class="fas fa-phone text-[#6366f1]"></i> +212 5XX XX XX XX</li>
-                <li class="flex items-center gap-3"><i class="fas fa-map-marker-alt text-[#6366f1]"></i> Technopark,
-                    Casablanca</li>
+                    abdelhakimallouani@gmail.com</li>
+                <li class="flex items-center gap-3"><i class="fas fa-phone text-[#6366f1]"></i> +212 6 63 82 58 67</li>
+                <li class="flex items-center gap-3"><i class="fas fa-map-marker-alt text-[#6366f1]"></i> Jorf,
+                    Errachidia, Morocco</li>
             </ul>
         </div>
     </div>
