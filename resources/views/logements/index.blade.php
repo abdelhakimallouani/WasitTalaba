@@ -157,4 +157,7 @@
         window.logements = @json($logements);
         window.ecoles = @json($ecoles);
     </script>
+
+        @include('layouts.footer')
+
 </x-app-layout>
