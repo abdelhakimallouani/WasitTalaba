@@ -3,7 +3,7 @@
         <div class="flex justify-between h-20 items-center">
             
             <div class="flex items-center gap-10">
-                <a href="{{ route('dashboard') }}" class="flex items-center gap-2">
+                <a href="{{ route('home') }}" class="flex items-center gap-2">
                     <div class="bg-indigo-600 p-1.5 rounded-lg shadow-lg">
                         <i class="fas fa-graduation-cap text-white text-lg"></i>
                     </div>
@@ -37,8 +37,8 @@
                         </x-slot>
                     </x-dropdown>
                 @else
-                    <a href="{{ route('login') }}" class="text-white font-medium hover:text-indigo-200 transition px-4">Login</a>
-                    <a href="{{ route('register') }}" class="px-6 py-2 bg-white text-indigo-700 font-bold rounded-full shadow-xl hover:bg-indigo-50 transition transform hover:scale-105">
+                    <a href="{{ route('login') }}" class="text-white font-medium px-6 py-2 hover:bg-white/20 hover:text-indigo-200 transition">Login</a>
+                    <a href="{{ route('register') }}" class="px-6 py-2 bg-white text-indigo-700 font-bold shadow-xl hover:bg-indigo-50 ">
                         Register
                     </a>
                 @endauth
