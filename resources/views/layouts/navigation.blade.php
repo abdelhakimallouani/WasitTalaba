@@ -21,7 +21,7 @@
                 @auth
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
-                            <button class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-full border border-white/30 transition">
+                            <button class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 transition">
                                 {{ auth()->user()->name }}
                                 <i class="fas fa-chevron-down ml-2 text-[10px]"></i>
                             </button>

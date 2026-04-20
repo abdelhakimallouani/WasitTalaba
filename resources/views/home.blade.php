@@ -4,23 +4,23 @@
         @include('layouts.header')
     </div>
 
-    <main >
+    <main>
 
         <section class="max-w-7xl mx-auto px-4 -mt-16 relative z-20">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-white p-6 shadow-xl border border-slate-100 flex flex-col items-center cursor-pointer">
-                    <div
-                        class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mb-3">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <span class="font-bold text-slate-700">Stages</span>
-                </div>
                 <div class="bg-white p-6 shadow-xl border border-slate-100 flex flex-col items-center cursor-pointer">
                     <div
                         class="w-12 h-12 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center mb-3">
                         <i class="fas fa-home"></i>
                     </div>
                     <span class="font-bold text-slate-700">Logements</span>
+                </div>
+                <div class="bg-white p-6 shadow-xl border border-slate-100 flex flex-col items-center cursor-pointer">
+                    <div
+                        class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <span class="font-bold text-slate-700">Locations</span>
                 </div>
                 <div class="bg-white p-6 shadow-xl border border-slate-100 flex flex-col items-center cursor-pointer">
                     <div
@@ -117,15 +117,113 @@
             </div>
         </section>
 
-        <div class="h-[500px] w-[70%] mx-auto mb-20">
+        <div class="py-10">
+            <div class="max-w-7xl mx-auto px-4 mb-10 text-start">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">
+                    Localisation des opportunités
+                </h2>
+                <p class="text-slate-500 text-start">
+                    Visualisez facilement les logements et les services disponibles à proximité de votre établissement
+                    scolaire pour optimiser vos déplacements.
+                </p>
+            </div>
 
-            <div id="map" class="h-full w-full"></div>
+            <div class="relative">
+                <div id="map" class="h-[500px] w-[75%] mx-auto ">
+                </div>
+            </div>
         </div>
 
-    <script>
-        window.logements = @json($logements);
-        window.ecoles = @json($ecoles);
-    </script>
+        <section class="max-w-7xl mx-auto px-4 py-20 mb-8">
+            <div class="flex flex-col lg:flex-row items-center gap-20">
+                <div class="lg:w-1/2 relative">
+                    <div class=" relative z-10">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1000"
+                            alt="Communauté Étudiante" class="w-full h-[550px] object-cover">
+                    </div>
+
+                    <div
+                        class="absolute -bottom-12 -right-8 bg-white p-8 max-w-sm border border-slate-50 z-20">
+                        <div class="flex text-orange-400 mb-4 gap-1">
+                            <i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i
+                                class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i
+                                class="fas fa-star text-sm"></i>
+                        </div>
+                        <p class="text-slate-700 font-bold italic mb-6 leading-relaxed text-lg">
+                            "L'outil indispensable pour tout étudiant arrivant dans une nouvelle ville. Sécurisé et
+                            efficace !"
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-200">
+                                AM
+                            </div>
+                            <div>
+                                <p class="font-extrabold text-slate-900">Mohammed Amine Nafiai</p>
+                                <p class="text-[5px] text-indigo-500 uppercase font-bold tracking-widest">Étudiant à
+                                    YouCode</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2">
+
+                    <h2 class="text-2xl md:text-5xl font-bold text-slate-900 mb-10 leading-tight">
+                        Pour qoui choisir <span class="text-indigo-600">WasiT Talaba</span>.
+                    </h2>
+
+                    <div class="space-y-12">
+                        <div class="flex items-start gap-6 group">
+                            <div
+                                class="shrink-0 w-14 h-14 bg-white shadow-lg text-indigo-600 rounded-full flex items-center justify-center font-bold text-xl group-hover:bg-indigo-600 group-hover:text-white transition-all duration-500">
+                                01
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900 mb-2">Annonces Vérifiées</h3>
+                                <p class="text-slate-500 leading-relaxed text-lg">
+                                    Nous luttons contre les arnaques au logement en vérifiant manuellement chaque
+                                    annonce publiée.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-6 group">
+                            <div
+                                class="shrink-0 w-14 h-14 bg-white shadow-lg text-indigo-600 rounded-full flex items-center justify-center font-bold text-xl group-hover:bg-indigo-600 group-hover:text-white transition-all duration-500">
+                                02
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900 mb-2">Proximité des Écoles</h3>
+                                <p class="text-slate-500 leading-relaxed text-lg">
+                                    Filtrez vos recherches selon la distance réelle entre votre logement et votre campus
+                                    universitaire.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-6 group">
+                            <div
+                                class="shrink-0 w-14 h-14 bg-white shadow-lg text-indigo-600 rounded-full flex items-center justify-center font-bold text-xl group-hover:bg-indigo-600 group-hover:text-white transition-all duration-500">
+                                03
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900 mb-2">Processus 100% Digital</h3>
+                                <p class="text-slate-500 leading-relaxed text-lg">
+                                    Contactez les bailleurs ou les entreprises directement via la plateforme sans
+                                    intermédiaire.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            window.logements = @json($logements);
+            window.ecoles = @json($ecoles);
+        </script>
     </main>
 
 

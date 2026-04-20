@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="flex-1 flex justify-center items-center px-6 py-3 border-b md:border-b-0 md:border-r border-gray-100">
-                <i class="fas fa-search text-indigo-500 mr-4 text-lg"></i>
+                <i class="fas fa-house text-indigo-500 mr-4 text-lg"></i>
                 <div class="text-left w-full">
                     <p class="block text-[10px] uppercase font-bold text-gray-400">TYPE</p>
                     <p
