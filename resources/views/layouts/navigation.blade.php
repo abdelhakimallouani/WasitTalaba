@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="absolute top-0 left-0 w-full z-50 bg-transparent">
+<nav x-data="{ open: false }" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 " id="navbar">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20 items-center">
 
@@ -8,7 +8,7 @@
                 </a>
 
                 <div class="hidden space-x-8 sm:flex">
-                    <a href="#" class="text-white/90 hover:text-white font-medium transition">Opportunities</a>
+                    <a href="{{ route('home') }}" class="text-white/90 hover:text-white font-medium transition">Accueil</a>
                     <a href="#" class="text-white/90 hover:text-white font-medium transition">Housing</a>
                     <a href="#" class="text-white/90 hover:text-white font-medium transition">Services</a>
                 </div>

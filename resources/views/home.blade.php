@@ -48,8 +48,10 @@
                         class="bg-white overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-100 group">
                         <div class="relative h-64 overflow-hidden">
                             @if ($logement->images->first())
-                                <img src="{{ asset('storage/' . $logement->images->first()->image_path) }}"
-                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                <a href="{{ route('logements.show', $logement) }}">
+                                    <img src="{{ asset('storage/' . $logement->images->first()->image_path) }}"
+                                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                </a>
                             @else
                                 <img src="https://via.placeholder.com/400x300" class="w-full h-full object-cover">
                             @endif
@@ -99,11 +101,6 @@
                                         {{ number_format($logement->prix, 0, ',', ' ') }} DH
                                     </p>
                                 </div>
-
-                                <a href="{{ route('logements.show', $logement) }}"
-                                    class="w-10 h-10 border border-slate-100 rounded-full flex items-center justify-center text-indigo-600 hover:bg-indigo-600 hover:text-white transition-all cursor-pointer">
-                                    <i class="fas fa-arrow-right text-xs"></i>
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -129,7 +126,7 @@
             </div>
 
             <div class="relative">
-                <div id="map" class="h-[500px] w-[75%] mx-auto ">
+                <div id="map" class="h-[500px] w-[75%] mx-auto z-0 rounded-lg shadow-lg"></div>
                 </div>
             </div>
         </div>

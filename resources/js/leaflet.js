@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 iconSize: [30, 30]
             })
         })
-        .addTo(map)
-        .bindPopup(`<b>${ecole.nom}</b>`);
+            .addTo(map)
+            .bindPopup(`<b>${ecole.nom}</b>`);
     });
 
     var circles = [];
@@ -57,4 +57,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+});
+
+window.addEventListener('scroll', function () {
+    let navbar = document.getElementById('navbar');
+
+    if (window.scrollY > 50) {
+        navbar.classList.add('bg-[#445EF2]', 'shadow', 'backdrop-blur-md');
+        navbar.classList.remove('bg-transparent');
+
+
+    } else {
+        navbar.classList.remove('bg-[#445EF2]', 'shadow', 'backdrop-blur-md');
+        navbar.classList.add('bg-transparent');
+    }
 });
