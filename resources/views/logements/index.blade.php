@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="bg-[#445EF2] border-b h-20 w-full -mt-px "></div>
+    <div class="bg-[#445EF2] fixed top-0 left-0 right-0 z-40 h-20 w-full shadow-md"></div>
     <div class="relative h-[500px] w-full">
         <div id="map" class="h-full w-full z-0"></div>
 
