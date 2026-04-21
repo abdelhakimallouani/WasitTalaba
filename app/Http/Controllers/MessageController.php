@@ -1,39 +1,54 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\MessageRequest;
 use App\Models\Message;
 use App\Models\User;
-use App\Http\Requests\MessageRequest;
-
-use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $userId = auth()->id();
 
-        $user = User::whereHas('sentMessages', function ($query) use ($userId) {
+        $users = User::whereHas('sentMessages', function ($query) use ($userId) {
             $query->where('receiver_id', $userId);
         })->orWhereHas('receivedMessages', function ($query) use ($userId) {
             $query->where('sender_id', $userId);
         })->get();
 
-        return view('messages.index', compact('user'));
+        return view('messages.index', compact('users'));
     }
 
-    public function show(User $user){
+    public function show(User $user)
+    {
+        $userId = auth()->id();
 
-        $messages = Message::whereHas('sender', function ($query) use ($user) {
-            $query->where('receiver_id', $user->id);
-        })->orWhereHas('receiver', function ($query) use ($user) {
-            $query->where('sender_id', $user->id);
+        $users = User::whereHas('sentMessages', function ($query) use ($userId) {
+            $query->where('receiver_id', $userId);
+        })->orWhereHas('receivedMessages', function ($query) use ($userId) {
+            $query->where('sender_id', $userId);
         })->get();
 
-        return view('messages.show', compact('user', 'messages'));
+        $authId = auth()->id();
 
+        $messages = Message::where(function ($q) use ($authId, $user) {
+            $q->where('sender_id', $authId)
+                ->where('receiver_id', $user->id);
+        })
+            ->orWhere(function ($q) use ($authId, $user) {
+                $q->where('sender_id', $user->id)
+                    ->where('receiver_id', $authId);
+            })
+            ->orderBy('created_at', 'asc')
+            ->get();
+
+        return view('messages.show', compact('user', 'users', 'messages'));
     }
 
-    public function store(MessageRequest $request, User $user){
+    public function store(MessageRequest $request, User $user)
+    {
         Message::create([
             'sender_id' => auth()->id(),
             'receiver_id' => $user->id,
