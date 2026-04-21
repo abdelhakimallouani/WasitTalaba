@@ -1,208 +1,151 @@
 <x-app-layout>
-    <div class="bg-[#F8F9FA] min-h-screen pb-20 font-sans antialiased text-[#010E26]">
-        <div class="bg-[#445EF2] border-b h-20 w-full -mt-px "></div>
+    <!-- FIX: Had l'div hua li ghadi ykhalli l'navbar dima bayna nqiya b l'blue dyalha -->
+    <div class="bg-[#445EF2] fixed top-0 left-0 right-0 z-40 h-20 w-full shadow-md"></div>
 
-        <main class="max-w-6xl mx-auto px-6 pt-10">
+    <!-- Padding-top bach l'content maykonch mghatti b l'navbar -->
+    <div class="max-w-7xl mx-auto pt-24 pb-8 px-4">
 
-            <div class="grid grid-cols-12 grid-rows-2 gap-3 h-[380px] md:h-[500px] mb-10 group">
-                <div class="col-span-12 md:col-span-8 row-span-2 overflow-hidden relative shadow-sm rounded-2xl">
-                    <img src="{{ $logement->images->first() ? asset('storage/' . $logement->images->first()->image_path) : 'https://via.placeholder.com/1200x800' }}"
-                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]">
+        <!-- 1. Galerie d tsawer (Same design as your image) -->
+        <div class="grid grid-cols-12 gap-3 h-[450px] mb-10 overflow-hidden rounded-2xl shadow-sm">
+            <!-- Image Principale -->
+            <div class="col-span-8 h-full">
+                @php $firstImage = $logement->images->first(); @endphp
+                <img src="{{ $firstImage ? asset('storage/' . $firstImage->image_path) : 'https://via.placeholder.com/800x500' }}"
+                    class="w-full h-full object-cover hover:opacity-95 transition cursor-pointer">
+            </div>
+            <!-- Images Secondaires -->
+            <div class="col-span-4 flex flex-col gap-3 h-full">
+                <div class="h-1/2 overflow-hidden">
+                    <img src="{{ isset($logement->images[1]) ? asset('storage/' . $logement->images[1]->image_path) : 'https://via.placeholder.com/400x300' }}"
+                        class="w-full h-full object-cover hover:opacity-95 transition cursor-pointer">
                 </div>
-                <div class="hidden md:block col-span-4 row-span-1 overflow-hidden relative shadow-sm rounded-2xl">
-                    <img src="{{ isset($logement->images[1]) ? asset('storage/' . $logement->images[1]->image_path) : 'https://via.placeholder.com/600x400' }}"
-                        class="w-full h-full object-cover">
+                <div class="h-1/2 overflow-hidden">
+                    <img src="{{ isset($logement->images[2]) ? asset('storage/' . $logement->images[2]->image_path) : 'https://via.placeholder.com/400x300' }}"
+                        class="w-full h-full object-cover hover:opacity-95 transition cursor-pointer">
                 </div>
-                <div class="hidden md:block col-span-4 row-span-1 overflow-hidden relative shadow-sm rounded-2xl">
-                    <img src="{{ isset($logement->images[2]) ? asset('storage/' . $logement->images[2]->image_path) : 'https://via.placeholder.com/600x400' }}"
-                        class="w-full h-full object-cover">
-                    @if ($logement->images->count() > 3)
-                        <button
-                            class="absolute bottom-4 right-4 bg-white/90 backdrop-blur px-5 py-2.5 rounded-xl font-bold text-xs shadow-sm flex items-center gap-2 hover:bg-[#010E26] hover:text-white transition-all">
-                            <i class="fas fa-th-large"></i> {{ $logement->images->count() }} PHOTOS
-                        </button>
+            </div>
+        </div>
+
+        <!-- 2. Grid Content & Sticky Reservation -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+            <!-- Jiha d l'issar: Info Logement -->
+            <div class="lg:col-span-2">
+                <div class="flex items-center justify-between border-b pb-6 mb-6">
+                    <div>
+                        <h2 class="text-xl font-semibold italic text-gray-800 tracking-tight">Logement proposé par {{ $logement->user->name }}</h2>
+                        <p class="text-gray-500">{{ $logement->type }} • {{ $logement->ville }}</p>
+                    </div>
+                    <div class="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold shadow-md">
+                        {{ strtoupper(substr($logement->user->name, 0, 1)) }}
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-gray-900">
+                        <i class="fas fa-map-marker-alt text-red-500"></i> Adresse
+                    </h3>
+                    <p class="text-gray-600 bg-gray-50 p-3 rounded-lg border border-gray-100 italic">
+                        {{ $logement->adresse }}
+                    </p>
+                </div>
+
+                <div class="border-b pb-8 mb-8">
+                    <h3 class="text-lg font-bold mb-3 text-gray-900">À propos de ce logement</h3>
+                    <p class="text-gray-600 leading-7 whitespace-pre-line text-lg">
+                        {{ $logement->description }}
+                    </p>
+                </div>
+
+                <!-- Section Avis -->
+                <div class="mt-10">
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        Avis des locataires ({{ $logement->avis->count() }})
+                    </h3>
+
+                    @forelse($logement->avis as $avis)
+                        <div class="mb-6 p-5 bg-gray-50 rounded-2xl border border-gray-100 shadow-sm">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-gray-700">{{ $avis->user->name }}</span>
+                                <span class="text-sm text-yellow-600 font-bold tracking-tighter">{{ $avis->note }} ⭐</span>
+                            </div>
+                            <p class="text-gray-600 text-sm italic leading-relaxed">" {{ $avis->commentaire }} "</p>
+                        </div>
+                    @empty
+                        <p class="text-gray-400">Pas encore d'avis sur ce logement.</p>
+                    @endforelse
+
+                    @if (auth()->user()->role == 'student')
+                        <div class="mt-8 p-6 bg-white border border-indigo-100 rounded-2xl shadow-md">
+                            <h4 class="font-bold text-indigo-900 mb-4 uppercase text-xs tracking-widest italic">Laissez votre expérience</h4>
+                            <form action="{{ route('avis.store', $logement->id) }}" method="POST" class="space-y-4">
+                                @csrf
+                                <div class="flex items-center gap-3">
+                                    <span class="text-sm font-medium text-gray-600">Note :</span>
+                                    <select name="note" class="rounded-lg border-gray-200 text-sm focus:ring-indigo-500">
+                                        @for ($i = 5; $i >= 1; $i--)
+                                            <option value="{{ $i }}">{{ $i }} ⭐</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                                <textarea name="commentaire" placeholder="Comment s'est passé votre séjour ?"
+                                    class="w-full rounded-xl border-gray-200 text-sm h-28 focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50"></textarea>
+                                <button type="submit"
+                                    class="bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold text-sm hover:bg-indigo-700 transition shadow-lg shadow-indigo-100">
+                                    Publier l'avis
+                                </button>
+                            </form>
+                        </div>
                     @endif
                 </div>
             </div>
 
-            <div class="mb-10">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                        <h1 class="text-3xl md:text-4xl font-black tracking-tight mb-4">{{ $logement->titre }}</h1>
-                        <div class="flex flex-wrap items-center gap-4 text-sm font-bold text-[#666666]">
-                            <span
-                                class="flex items-center gap-1.5 bg-[#445EF2]/5 text-[#445EF2] px-3 py-1.5 rounded-lg">
-                                <i class="fas fa-map-marker-alt"></i> {{ $logement->ville }}
-                            </span>
-                            <span class="text-[#888888]">{{ $logement->adresse }}</span>
-                            <span class="text-yellow-500 flex items-center gap-1">
-                                <i class="fas fa-star"></i> 4.8 <span
-                                    class="text-[#CCCCCC] font-normal">({{ $logement->avis->count() }} avis)</span>
-                            </span>
-                        </div>
+            <!-- Jiha d l'imn: Carte de Réservation (Sticky) -->
+            <div class="lg:col-span-1">
+                <div class="sticky top-28 p-6 bg-white border border-gray-200 rounded-3xl shadow-2xl shadow-gray-200/50">
+                    <div class="flex justify-between items-baseline mb-6">
+                        <span class="text-3xl font-black text-gray-900">{{ $logement->prix }} DH</span>
+                        <span class="text-gray-500 text-sm font-medium">/ mois</span>
                     </div>
+
+                    @if (auth()->user()->role == 'student')
+                        <form action="{{ route('reservations.store', $logement) }}" method="POST" class="space-y-4">
+                            @csrf
+                            <div class="border border-gray-300 rounded-xl overflow-hidden">
+                                <div class="p-3 border-b flex flex-col bg-white">
+                                    <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Arrivée</label>
+                                    <input type="date" name="date_debut"
+                                        class="border-none p-0 focus:ring-0 text-sm font-bold w-full text-gray-700" required>
+                                </div>
+                                <div class="p-3 flex flex-col bg-white">
+                                    <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Départ</label>
+                                    <input type="date" name="date_fin"
+                                        class="border-none p-0 focus:ring-0 text-sm font-bold w-full text-gray-700" required>
+                                </div>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full bg-[#FF385C] hover:bg-[#E31C5F] text-white py-4 rounded-2xl font-black text-lg transition-all shadow-xl active:scale-95 shadow-pink-100">
+                                Réserver maintenant
+                            </button>
+                        </form>
+
+                        <div class="mt-4 text-center">
+                            <p class="text-[11px] text-gray-400 mb-4 italic">Confirmation rapide par le propriétaire</p>
+                            <a href="{{ route('messages.show', $logement->user) }}"
+                                class="inline-flex items-center gap-2 text-sm font-bold text-gray-700 hover:text-indigo-600 transition underline underline-offset-4 decoration-gray-300">
+                                <i class="far fa-comment-dots"></i> Contacter l'propriétaire
+                            </a>
+                        </div>
+                    @else
+                        <div class="py-5 px-3 bg-indigo-50 rounded-2xl border-2 border-dashed border-indigo-200 text-center">
+                            <p class="text-sm font-bold text-indigo-700 italic">Vous êtes le propriétaire de ce logement</p>
+                        </div>
+                    @endif
                 </div>
             </div>
 
-            <div class="flex flex-col lg:flex-row gap-12">
-                <div class="lg:w-[65%]">
-                    <section class="mb-12">
-                        <div
-                            class="flex items-center gap-5 mb-10 p-6 bg-white border border-[#EEEEEE] rounded-2xl shadow-sm">
-                            <img src="https://ui-avatars.com/api/?name={{ $logement->user->name }}&background=445EF2&color=fff&bold=true"
-                                class="w-14 h-14 rounded-xl object-cover">
-                            <div>
-                                <h3 class="text-base font-black text-[#010E26]">Hébergé par {{ $logement->user->name }}
-                                </h3>
-                                <p class="text-xs text-[#999999] font-bold uppercase tracking-wider">Hôte vérifié •
-                                    Membre depuis 2024</p>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
-                            @php
-                                $features = [
-                                    ['icon' => 'fa-home', 'label' => 'Type', 'val' => ucfirst($logement->type)],
-                                    ['icon' => 'fa-bed', 'label' => 'Chambres', 'val' => '2 Pièces'],
-                                    ['icon' => 'fa-expand-arrows-alt', 'label' => 'Surface', 'val' => '65m²'],
-                                    [
-                                        'icon' => 'fa-user-check',
-                                        'label' => 'Status',
-                                        'val' => 'Libre',
-                                        'color' => 'text-green-600',
-                                    ],
-                                ];
-                            @endphp
-                            @foreach ($features as $f)
-                                <div
-                                    class="p-5 bg-white border border-[#EEEEEE] rounded-2xl text-center hover:border-[#445EF2] transition-colors group">
-                                    <i
-                                        class="fas {{ $f['icon'] }} text-[#445EF2] text-lg mb-3 opacity-80 group-hover:scale-110 transition-transform"></i>
-                                    <p class="text-[10px] uppercase tracking-widest font-black text-[#999999] mb-1">
-                                        {{ $f['label'] }}</p>
-                                    <p class="text-sm font-bold {{ $f['color'] ?? '' }}">{{ $f['val'] }}</p>
-                                </div>
-                            @endforeach
-                        </div>
-
-                        <div class="prose prose-slate max-w-none">
-                            <h4 class="text-xl font-black mb-4">À propos de ce logement</h4>
-                            <p class="text-[#666666] text-base leading-relaxed whitespace-pre-line">
-                                {{ $logement->description }}
-                            </p>
-                        </div>
-                    </section>
-
-                    <hr class="border-[#EEEEEE] my-10">
-
-                    <section id="reviews">
-                        <div class="flex items-center justify-between mb-8">
-                            <h3 class="text-xl font-black">Avis & Expériences</h3>
-                            @if (auth()->user()->role == 'student')
-                                <button onclick="document.getElementById('avis-form').classList.toggle('hidden')"
-                                    class="text-[#445EF2] font-black text-xs uppercase tracking-widest hover:underline">
-                                    Écrire un avis
-                                </button>
-                            @endif
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            @forelse($logement->avis as $avis)
-                                <div class="p-6 bg-white border border-[#EEEEEE] rounded-2xl shadow-sm">
-                                    <div class="flex items-center gap-3 mb-4">
-                                        <img src="https://ui-avatars.com/api/?name={{ $avis->user->name }}&background=F8F9FA&color=445EF2"
-                                            class="w-10 h-10 rounded-full">
-                                        <div class="flex-1">
-                                            <h5 class="text-sm font-black">{{ $avis->user->name }}</h5>
-                                            <p class="text-[10px] text-gray-400 font-bold uppercase">
-                                                {{ $avis->created_at->diffForHumans() }}</p>
-                                        </div>
-                                        <div class="flex text-yellow-400 text-xs">
-                                            @for ($i = 0; $i < $avis->note; $i++)
-                                                <i class="fas fa-star"></i>
-                                            @endfor
-                                        </div>
-                                    </div>
-                                    <p class="text-[#666666] text-sm leading-relaxed italic">"{{ $avis->commentaire }}"
-                                    </p>
-                                </div>
-                            @empty
-                                <p
-                                    class="text-sm text-gray-400 italic bg-white p-6 rounded-2xl border border-dashed border-[#EEEEEE]">
-                                    Aucun avis pour le moment.</p>
-                            @endforelse
-                        </div>
-                    </section>
-                </div>
-
-                <aside class="lg:w-[35%]">
-                    <div class="sticky top-10 bg-white rounded-[2.5rem] p-8 shadow-sm border border-[#EEEEEE]">
-                        <div class="flex justify-between items-end mb-8">
-                            <div>
-                                <span class="text-xs font-black text-[#999999] uppercase tracking-widest">Loyer
-                                    Mensuel</span>
-                                <p class="text-4xl font-black text-[#445EF2] mt-1">
-                                    {{ number_format($logement->prix, 0, ',', ' ') }} <span
-                                        class="text-sm text-[#010E26] font-bold">DH</span>
-                                </p>
-                            </div>
-                            <div
-                                class="bg-green-50 text-green-600 text-[10px] px-3 py-1.5 rounded-lg font-black uppercase border border-green-100">
-                                Disponible</div>
-                        </div>
-
-                        @if (auth()->user()->role == 'student')
-                            <form action="{{ route('reservations.store', $logement) }}" method="POST"
-                                class="space-y-5">
-                                @csrf
-                                <div
-                                    class="grid grid-cols-2 gap-px bg-[#EEEEEE] rounded-2xl overflow-hidden border border-[#EEEEEE]">
-                                    <div class="bg-white p-4">
-                                        <label
-                                            class="block text-[10px] font-black text-[#999999] uppercase mb-1">Arrivée</label>
-                                        <input type="date" name="date_debut" required
-                                            class="w-full text-sm font-bold border-none p-0 focus:ring-0">
-                                    </div>
-                                    <div class="bg-white p-4">
-                                        <label
-                                            class="block text-[10px] font-black text-[#999999] uppercase mb-1">Départ</label>
-                                        <input type="date" name="date_fin" required
-                                            class="w-full text-sm font-bold border-none p-0 focus:ring-0">
-                                    </div>
-                                </div>
-
-                                <button type="submit"
-                                    class="w-full bg-[#445EF2] hover:bg-[#010E26] text-white py-5 rounded-2xl font-black text-sm transition-all uppercase tracking-widest shadow-lg shadow-blue-100 active:scale-95">
-                                    Réserver maintenant
-                                </button>
-                            </form>
-
-                            <div class="mt-5">
-                                <a href="{{ route('messages.show', $logement->user) }}"
-                                    class="w-full flex items-center justify-center gap-2 border-2 border-[#010E26] py-4 rounded-2xl font-black text-xs uppercase hover:bg-[#010E26] hover:text-white transition-all">
-                                    <i class="far fa-comment-alt text-base"></i> Contacter l'hôte
-                                </a>
-                            </div>
-                        @else
-                            <div
-                                class="p-8 bg-[#F8F9FA] rounded-[2rem] border-2 border-dashed border-[#EEEEEE] text-center">
-                                <p class="text-[#010E26] font-black uppercase text-xs tracking-widest">Gestion Annonce
-                                </p>
-                                <a href="#"
-                                    class="inline-block mt-4 text-[#445EF2] font-bold text-sm underline underline-offset-4">Modifier
-                                    les informations</a>
-                            </div>
-                        @endif
-
-                        <div class="mt-8 text-center border-t border-[#F8F9FA] pt-6">
-                            <p
-                                class="text-[11px] text-[#BBBBBB] font-bold uppercase flex items-center justify-center gap-2">
-                                <i class="fas fa-shield-alt text-green-400"></i> Paiement 100% Sécurisé
-                            </p>
-                        </div>
-                    </div>
-                </aside>
-            </div>
-        </main>
+        </div>
     </div>
 </x-app-layout>
