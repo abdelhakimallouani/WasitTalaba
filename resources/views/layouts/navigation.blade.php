@@ -9,7 +9,7 @@
 
                 <div class="hidden space-x-8 sm:flex">
                     <a href="{{ route('home') }}" class="text-white/90 hover:text-white font-medium transition">Accueil</a>
-                    <a href="#" class="text-white/90 hover:text-white font-medium transition">Housing</a>
+                    <a href="{{ route('favoris.index') }}" class="text-white/90 hover:text-white font-medium transition">Favoris</a>
                     <a href="#" class="text-white/90 hover:text-white font-medium transition">Services</a>
                 </div>
             </div>
