@@ -12,7 +12,8 @@
                     <a href="{{ route('favoris.index') }}" class="text-white/90 hover:text-white font-medium transition">Favoris</a>
                     <a href="{{ route('messages.index') }}" class="text-white/90 hover:text-white font-medium transition">Messages</a>
                     @if (auth()->user() && auth()->user()->role === 'owner')
-                        <a href="{{ route('logements.my') }}" class="text-white/90 hover:text-white font-medium transition">Mylogements</a>    
+                        <a href="{{ route('logements.my') }}" class="text-white/90 hover:text-white font-medium transition">Mylogements</a>
+                        <a href="{{ route('reservations.index') }}" class="text-white/90 hover:text-white font-medium transition">Reservations</a>
                     @endif
                 </div>
             </div>

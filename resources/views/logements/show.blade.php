@@ -59,7 +59,7 @@
             <div class="lg:col-span-2">
                 <div class="flex items-center justify-between border-b pb-6 mb-6">
                     <div>
-                        <h2 class="text-2xl font-bold text-gray-800 tracking-tight italic">
+                        <h2 class="text-2xl font-bold text-gray-800 tracking-tight ">
                             Logement proposé par {{ $logement->user->name }}
                         </h2>
                         <p class="text-gray-500 font-medium mt-1">{{ $logement->type }} • {{ $logement->ville }}</p>
@@ -74,14 +74,14 @@
                     <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-gray-900">
                         <i class="fas fa-map-marker-alt text-red-500"></i> Adresse complète
                     </h3>
-                    <p class="text-gray-600 italic">
+                    <p class="text-gray-600 ">
                         {{ $logement->adresse }}
                     </p>
                 </div>
 
                 <div class="border-b pb-8 mb-8">
                     <h3 class="text-lg font-bold mb-4 text-gray-900">À propos de ce logement</h3>
-                    <p class="text-gray-600 leading-8 whitespace-pre-line text-lg italic">
+                    <p class="text-gray-600 leading-8 whitespace-pre-line text-lg ">
                         {{ $logement->description }}
                     </p>
                 </div>
@@ -93,7 +93,7 @@
                         <form action="{{ route('avis.store', $logement->id) }}" method="POST" class="space-y-4">
                             @csrf
                             <div class="flex items-center gap-4">
-                                <label class="text-sm font-bold text-gray-700 italic">Votre note :</label>
+                                <label class="text-sm font-bold text-gray-700 ">Votre note :</label>
                                 <select name="note"
                                     class="rounded-xl border-none shadow-sm text-sm focus:ring-2 focus:ring-indigo-500">
                                     @for ($i = 5; $i >= 1; $i--)
@@ -126,12 +126,12 @@
                                     {{ $avis->note }} / 5 ⭐
                                 </span>
                             </div>
-                            <p class="text-gray-600 text-sm leading-relaxed italic border-l-4 border-indigo-100 pl-4">
+                            <p class="text-gray-600 text-sm leading-relaxed  border-l-4 border-indigo-100 pl-4">
                                 "{{ $avis->commentaire }}"
                             </p>
                         </div>
                     @empty
-                        <p class="text-gray-400 italic">Soyez le premier à laisser un avis.</p>
+                        <p class="text-gray-400 ">Soyez le premier à laisser un avis.</p>
                     @endforelse
 
                 </div>
@@ -175,7 +175,7 @@
                         </form>
 
                         <div class="mt-6 text-center">
-                            <p class="text-[12px] text-gray-400 mb-6 italic">Paiement sécurisé après confirmation</p>
+                            <p class="text-[12px] text-gray-400 mb-6 ">Paiement sécurisé après confirmation</p>
                             <a href="{{ route('messages.show', $logement->user) }}"
                                 class="inline-flex items-center gap-2 text-sm font-bold text-gray-600 hover:text-black transition-all border-b-2 border-transparent hover:border-gray-800 pb-1">
                                 <i class="far fa-comment-dots"></i> Contacter le propriétaire
@@ -183,7 +183,7 @@
                         </div>
                     @else
                         <div class="py-6 px-4 bg-indigo-50/50  border-2 border-dashed border-indigo-100 text-center">
-                            <p class="text-sm font-black text-indigo-700 italic uppercase tracking-widest">Votre Annonce
+                            <p class="text-sm font-black text-indigo-700  uppercase tracking-widest">Votre Annonce
                             </p>
                             <p class="text-xs text-indigo-400 mt-1">Vous gérez cette propriété</p>
                         </div>

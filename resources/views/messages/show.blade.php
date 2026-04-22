@@ -34,7 +34,7 @@
         <!-- Main Chat Area -->
         <div class="flex-1 flex flex-col bg-white overflow-hidden">
             <!-- Header -->
-            <div class="px-8 py-4 border-b flex items-center justify-between bg-white shadow-sm shrink-0">
+            <div class="px-8 py-2 border-b flex items-center justify-between bg-white shadow-sm shrink-0">
                 <div class="flex items-center gap-3">
                     <img src="https://ui-avatars.com/api/?name={{ $user->name }}" class="w-10 h-10 rounded-full">
                     <div>
