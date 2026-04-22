@@ -37,7 +37,7 @@
                         </a>
                         <!-- Badge Ville -->
                         <div
-                            class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-xl shadow-sm">
+                            class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded shadow-sm">
                             <span
                                 class="text-[10px] font-black uppercase tracking-widest text-gray-700">{{ $logement->ville }}</span>
                         </div>
