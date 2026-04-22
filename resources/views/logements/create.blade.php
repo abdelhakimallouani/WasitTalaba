@@ -35,14 +35,14 @@
                     <div class="md:col-span-2">
                         <label class="block text-[13px] font-black text-gray-600 uppercase tracking-[0.1em] mb-2">Titre de l'annonce</label>
                         <input type="text" name="titre" value="{{ old('titre') }}" 
-                               class="w-full bg-gray-50 border border-gray-300  p-4 text-gray-800 focus:ring-[#445EF2]/20 transition-all placeholder-gray-300"
+                               class="w-full bg-gray-50 border border-gray-300  p-4 text-gray-800 focus:ring-[#445EF2]/20 placeholder-gray-300"
                                placeholder="Ex: Studio moderne près de l'université">
                     </div>
 
                     <div class="md:col-span-2">
                         <label class="block text-[13px] font-black text-gray-600 uppercase tracking-[0.1em] mb-2">Description</label>
                         <textarea name="description" rows="4"
-                                  class="w-full bg-gray-50 border border-gray-300  p-4 text-gray-800 focus:ring-[#445EF2]/20 transition-all placeholder-gray-300"
+                                  class="w-full bg-gray-50 border border-gray-300  p-4 text-gray-800 focus:ring-[#445EF2]/20 placeholder-gray-300"
                                   placeholder="Décrivez les atouts de votre logement...">{{ old('description') }}</textarea>
                     </div>
 
@@ -50,14 +50,14 @@
                         <label class="block text-[13px] font-black text-gray-600 uppercase tracking-[0.1em] mb-2">Prix (DH / mois)</label>
                         <div class="relative">
                             <input type="number" name="prix" value="{{ old('prix') }}" 
-                                   class="w-full bg-gray-50 border border-gray-300  p-4 pl-12 text-gray-800 focus:ring-[#445EF2]/20 transition-all">
+                                   class="w-full bg-gray-50 border border-gray-300  p-4 pl-12 text-gray-800 focus:ring-[#445EF2]/20">
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 font-bold">DH</span>
                         </div>
                     </div>
 
                     <div>
                         <label class="block text-[13px] font-black text-gray-600 uppercase tracking-[0.1em] mb-2">Type de logement</label>
-                        <select name="type" class="w-full bg-gray-50 border border-gray-300  p-4 text-gray-800 focus:ring-[#445EF2]/20 transition-all">
+                        <select name="type" class="w-full bg-gray-50 border border-gray-300  p-4 text-gray-800 focus:ring-[#445EF2]/20">
                             <option value="appartement" {{ old('type') == 'appartement' ? 'selected' : '' }}>Appartement</option>
                             <option value="chambre" {{ old('type') == 'chambre' ? 'selected' : '' }}>Chambre</option>
                             <option value="studio" {{ old('type') == 'studio' ? 'selected' : '' }}>Studio</option>
@@ -79,24 +79,24 @@
                     <div>
                         <label class="block text-[13px] font-black text-gray-600 uppercase tracking-[0.1em] mb-2">Ville</label>
                         <input type="text" name="ville" value="{{ old('ville') }}" 
-                               class="w-full bg-gray-50 border border-gray-300  p-4 text-gray-800 focus:ring-[#445EF2]/20 transition-all placeholder-gray-300 "
+                               class="w-full bg-gray-50 border border-gray-300  p-4 text-gray-800 focus:ring-[#445EF2]/20 placeholder-gray-300 "
                                placeholder="Ex: Casablanca">
                     </div>
                     <div>
                         <label class="block text-[13px] font-black text-gray-600 uppercase tracking-[0.1em] mb-2">Adresse</label>
                         <input type="text" name="adresse" value="{{ old('adresse') }}" 
-                               class="w-full bg-gray-50 border border-gray-300  p-4 text-gray-800 focus:ring-[#445EF2]/20 transition-all placeholder-gray-300 "
+                               class="w-full bg-gray-50 border border-gray-300  p-4 text-gray-800 focus:ring-[#445EF2]/20 placeholder-gray-300 "
                                placeholder="Numéro et rue">
                     </div>
                     <div>
                         <label class="block text-[13px] font-black text-gray-600 uppercase tracking-[0.1em] mb-2">Latitude</label>
                         <input type="text" name="latitude" value="{{ old('latitude') }}" 
-                               class="w-full bg-gray-50 border border-gray-300  p-4 text-gray-800 focus:ring-[#445EF2]/20 transition-all">
+                               class="w-full bg-gray-50 border border-gray-300  p-4 text-gray-800 focus:ring-[#445EF2]/20">
                     </div>
                     <div>
                         <label class="block text-[13px] font-black text-gray-600 uppercase tracking-[0.1em] mb-2">Longitude</label>
                         <input type="text" name="longitude" value="{{ old('longitude') }}" 
-                               class="w-full bg-gray-50 border border-gray-300  p-4 text-gray-800 focus:ring-[#445EF2]/20 transition-all">
+                               class="w-full bg-gray-50 border border-gray-300  p-4 text-gray-800 focus:ring-[#445EF2]/20">
                     </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                     <h3 class="text-xl font-bold text-gray-800">Photos du logement</h3>
                 </div>
 
-                <div class="relative border-2 border-dashed border-gray-200 p-10 text-center hover:border-[#445EF2] transition-all group">
+                <div class="relative border-2 border-dashed border-gray-200 p-10 text-center hover:border-[#445EF2] group">
                     <input type="file" name="images[]" multiple class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
                     <div class="space-y-2">
                         <i class="fas fa-cloud-upload-alt text-4xl text-gray-300 group-hover:text-[#445EF2] transition-colors"></i>
@@ -123,7 +123,7 @@
             <!-- Submit Button -->
             <div class="pt-4">
                 <button type="submit" 
-                        class="w-full bg-[#445EF2] text-white font-black py-5 shadow-xl shadow-blue-200 hover:bg-blue-700 transition-all active:scale-[0.98] uppercase tracking-widest text-sm">
+                        class="w-full bg-[#445EF2] text-white font-black py-5 shadow-xl shadow-blue-200 hover:bg-blue-700 active:scale-[0.98] uppercase tracking-widest text-sm">
                     Publier l'annonce
                 </button>
             </div>
