@@ -1,31 +1,28 @@
-<nav x-data="{ open: false }" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 " id="navbar">
+<nav x-data="{ open: false }" class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="navbar">
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20 items-center">
 
-            <div class="flex items-center gap-10">
-                <a href="{{ route('home') }}" class="flex items-center gap-2">
-                    <span class="text-2xl font-bold text-white tracking-tight">Wasit Talaba</span>
-                </a>
+            <!-- Logo -->
+            <a href="{{ route('home') }}" class="text-2xl font-bold text-white">
+                Wasit Talaba
+            </a>
 
-                <div class="hidden space-x-8 sm:flex">
-                    <a href="{{ route('home') }}"
-                        class="text-white/90 hover:text-white font-medium transition">Accueil</a>
-                    <a href="{{ route('favoris.index') }}"
-                        class="text-white/90 hover:text-white font-medium transition">Favoris</a>
-                    <a href="{{ route('messages.index') }}"
-                        class="text-white/90 hover:text-white font-medium transition">Messages</a>
-                    @if (auth()->user() && auth()->user()->role === 'owner')
-                        <a href="{{ route('logements.my') }}"
-                            class="text-white/90 hover:text-white font-medium transition">Mylogements</a>
-                        <a href="{{ route('reservations.index') }}"
-                            class="text-white/90 hover:text-white font-medium transition">Reservations</a>
-                    @else
-                        <a href="{{ route('notifications.index') }}"
-                            class="text-white/90 hover:text-white font-medium transition">Notifications</a>
-                    @endif
-                </div>
+            <!-- Desktop Menu -->
+            <div class="hidden sm:flex items-center gap-6">
+                <a href="{{ route('home') }}" class="text-white hover:text-white/80">Accueil</a>
+                <a href="{{ route('favoris.index') }}" class="text-white hover:text-white/80">Favoris</a>
+                <a href="{{ route('messages.index') }}" class="text-white hover:text-white/80">Messages</a>
+
+                @if (auth()->user() && auth()->user()->role === 'owner')
+                    <a href="{{ route('logements.my') }}" class="text-white">Mylogements</a>
+                    <a href="{{ route('reservations.index') }}" class="text-white">Reservations</a>
+                @else
+                    <a href="{{ route('notifications.index') }}" class="text-white">Notifications</a>
+                @endif
             </div>
 
+            <!-- Desktop Auth -->
             <div class="hidden sm:flex sm:items-center gap-4">
                 @auth
                     <x-dropdown align="right" width="48">
@@ -73,6 +70,52 @@
                     </svg>
                 </button>
             </div>
+
+            {{-- <!-- Mobile Button -->
+            <button @click="open = !open" class="sm:hidden text-white focus:outline-none">
+
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path x-show="!open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16" />
+                    <path x-show="open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button> --}}
+
         </div>
     </div>
+
+    <!-- Mobile Menu -->
+    <div x-show="open" x-transition @click.outside="open = false" class="sm:hidden bg-white shadow-lg">
+
+        <div class="flex flex-col p-4 space-y-3">
+
+            <a href="{{ route('home') }}" class="text-gray-700">Accueil</a>
+            <a href="{{ route('favoris.index') }}" class="text-gray-700">Favoris</a>
+            <a href="{{ route('messages.index') }}" class="text-gray-700">Messages</a>
+
+            @if (auth()->user() && auth()->user()->role === 'owner')
+                <a href="{{ route('logements.my') }}" class="text-gray-700">Mylogements</a>
+                <a href="{{ route('reservations.index') }}" class="text-gray-700">Reservations</a>
+            @else
+                <a href="{{ route('notifications.index') }}" class="text-gray-700">Notifications</a>
+            @endif
+
+            <hr>
+
+            @auth
+                <span class="font-bold text-gray-800">{{ auth()->user()->name }}</span>
+
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="text-red-500 text-left">Logout</button>
+                </form>
+            @else
+                <a href="{{ route('login') }}" class="text-gray-700">Login</a>
+                <a href="{{ route('register') }}" class="text-indigo-600 font-bold">Register</a>
+            @endauth
+
+        </div>
+    </div>
+
 </nav>

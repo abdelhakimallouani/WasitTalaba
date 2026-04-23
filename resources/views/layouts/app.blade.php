@@ -15,6 +15,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+<script src="//unpkg.com/alpinejs" defer></script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <body class="font-sans antialiased">
