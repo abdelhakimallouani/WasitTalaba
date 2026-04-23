@@ -11,17 +11,17 @@
             <!-- Desktop Menu -->
             <div class="hidden sm:flex items-center gap-6">
                 <a href="{{ route('home') }}" class="text-white hover:text-white/80">Accueil</a>
-                
-                @if (auth()->user() && auth()->user()->role === 'owner')
-                <a href="{{ route('logements.my') }}" class="text-white">Mylogements</a>
-                <a href="{{ route('reservations.index') }}" class="text-white">Reservations</a>
+
+                @if (auth()->check() && auth()->user()->role === 'owner')
+                    <a href="{{ route('logements.my') }}" class="text-white">Mylogements</a>
+                    <a href="{{ route('reservations.index') }}" class="text-white">Reservations</a>
                 @else
-                <a href="{{ route('logements.index') }}" class="text-white hover:text-white/80">Logements</a>
-                <a href="{{ route('notifications.index') }}" class="text-white">Notifications</a>
-                <a href="{{ route('favoris.index') }}" class="text-white hover:text-white/80">Favoris</a>
+                    <a href="{{ route('logements.index') }}" class="text-white hover:text-white/80">Logements</a>
+                    <a href="{{ route('notifications.index') }}" class="text-white">Notifications</a>
+                    <a href="{{ route('favoris.index') }}" class="text-white hover:text-white/80">Favoris</a>
                 @endif
                 <a href="{{ route('messages.index') }}" class="text-white hover:text-white/80">Messages</a>
-                
+
             </div>
 
             <!-- Desktop Auth -->
@@ -93,15 +93,15 @@
         <div class="flex flex-col p-4 space-y-3">
 
             <a href="{{ route('home') }}" class="text-gray-700">Accueil</a>
-            <a href="{{ route('favoris.index') }}" class="text-gray-700">Favoris</a>
-            <a href="{{ route('messages.index') }}" class="text-gray-700">Messages</a>
 
             @if (auth()->user() && auth()->user()->role === 'owner')
                 <a href="{{ route('logements.my') }}" class="text-gray-700">Mylogements</a>
                 <a href="{{ route('reservations.index') }}" class="text-gray-700">Reservations</a>
             @else
+                <a href="{{ route('favoris.index') }}" class="text-gray-700">Favoris</a>
                 <a href="{{ route('notifications.index') }}" class="text-gray-700">Notifications</a>
             @endif
+            <a href="{{ route('messages.index') }}" class="text-gray-700">Messages</a>
 
             <hr>
 

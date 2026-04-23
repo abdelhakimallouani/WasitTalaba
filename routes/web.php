@@ -7,13 +7,11 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LogementController::class, 'home'])->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 
@@ -54,7 +52,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/logements/{logement}', [LogementController::class, 'show'])->name('logements.show');
     Route::middleware('role:admin')->group(function () {
-        // admin route
+        Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     });
 });
 
