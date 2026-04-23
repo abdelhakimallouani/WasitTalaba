@@ -35,7 +35,17 @@
                                 <i class="fas fa-chevron-down ml-2 text-[10px]"></i>
                             </button>
                         </x-slot>
+
                         <x-slot name="content">
+                            @if (auth()->user()->role === 'admin')
+                                <x-dropdown-link :href="route('admin.dashboard')"
+                                    class="text-indigo-600 font-bold hover:bg-indigo-50 hover:text-indigo-800">
+
+                                    <i class="fas fa-chart-line"></i>
+                                    Admin Dashboard
+
+                                </x-dropdown-link>
+                            @endif
                             <x-dropdown-link :href="route('profile.edit')">Profile</x-dropdown-link>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -104,6 +114,16 @@
             <a href="{{ route('messages.index') }}" class="text-gray-700">Messages</a>
 
             <hr>
+
+            @if (auth()->user()->role === 'admin')
+                <x-dropdown-link :href="route('admin.dashboard')"
+                    class="text-indigo-600 font-bold hover:bg-indigo-50 hover:text-indigo-800">
+
+                    <i class="fas fa-chart-line"></i>
+                    Admin Dashboard
+
+                </x-dropdown-link>
+            @endif
 
             @auth
                 <span class="font-bold text-gray-800">{{ auth()->user()->name }}</span>
