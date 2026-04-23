@@ -127,85 +127,96 @@
 
             <div class="relative">
                 <div id="map" class="h-[500px] w-[75%] mx-auto z-0 rounded-lg shadow-lg"></div>
-                </div>
             </div>
         </div>
-
-        <section class="max-w-7xl mx-auto px-4 py-16 mb-10">
-    <div class="flex flex-col lg:flex-row items-center gap-16">
-        
-        <div class="lg:w-1/2 relative">
-            <div class="relative z-10">
-                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1000"
-                    alt="Communauté Étudiante" 
-                    class="w-full h-[480px] object-cover">
-            </div>
-
-            <div class="absolute -bottom-8 -right-6 bg-white p-7 max-w-[320px]  shadow-2xl border border-slate-50 z-20">
-                <div class="flex text-orange-400 mb-3 gap-1">
-                    <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
-                </div>
-                <p class="text-slate-700 font-bold italic mb-5 leading-relaxed">
-                    "L'outil indispensable pour tout étudiant arrivant dans une nouvelle ville. Sécurisé et efficace !"
-                </p>
-                <div class="flex items-center gap-4">
-                    <div class="w-11 h-11 bg-indigo-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg">
-                        AM
-                    </div>
-                    <div>
-                        <p class="font-extrabold text-slate-900 text-sm">Mohammed Amine Nafiai</p>
-                        <p class="text-[11px] text-indigo-500 uppercase font-bold tracking-widest mt-0.5">Étudiant à YouCode</p>
-                    </div>
-                </div>
-            </div>
         </div>
 
-        <div class="lg:w-1/2">
-            <h2 class="text-1xl md:text-4xl font-semibold text-slate-900 mb-8 leading-[1.1]">
-                Pourquoi choisir <span class="text-indigo-600">WasiT Talaba</span> ?
-            </h2>
+        <section class="max-w-7xl mx-auto px-4 py-16 mb-10 ">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
 
-            <div class="space-y-10">
-                <div class="flex items-start gap-6 group">
-                    <div class="shrink-0 w-12 h-12 bg-white shadow-md text-indigo-600 rounded-full flex items-center justify-center font-bold text-lg group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
-                        01
+                <div class="lg:w-1/2 relative">
+                    <div class="relative z-10">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1000"
+                            alt="Communauté Étudiante" class="w-full h-[480px] object-cover">
                     </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Annonces Vérifiées</h3>
-                        <p class="text-slate-500 leading-relaxed">
-                            Nous luttons contre les arnaques au logement en vérifiant manuellement chaque annonce publiée.
+
+                    <div
+                        class="absolute -bottom-8 -right-6 bg-white p-7 max-w-[320px]  shadow-2xl border border-slate-50 z-20">
+                        <div class="flex text-orange-400 mb-3 gap-1">
+                            <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i
+                                class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i
+                                class="fas fa-star text-xs"></i>
+                        </div>
+                        <p class="text-slate-700 font-bold italic mb-5 leading-relaxed">
+                            "L'outil indispensable pour tout étudiant arrivant dans une nouvelle ville. Sécurisé et
+                            efficace !"
                         </p>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-11 h-11 bg-indigo-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg">
+                                AM
+                            </div>
+                            <div>
+                                <p class="font-extrabold text-slate-900 text-sm">Mohammed Amine Nafiai</p>
+                                <p class="text-[11px] text-indigo-500 uppercase font-bold tracking-widest mt-0.5">
+                                    Étudiant à YouCode</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex items-start gap-6 group">
-                    <div class="shrink-0 w-12 h-12 bg-white shadow-md text-indigo-600 rounded-full flex items-center justify-center font-bold text-lg group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
-                        02
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Proximité des Écoles</h3>
-                        <p class="text-slate-500 leading-relaxed">
-                            Filtrez vos recherches selon la distance réelle entre votre logement et votre campus universitaire.
-                        </p>
+                <div class="lg:w-1/2">
+                    <h2 class="text-1xl md:text-4xl font-semibold text-slate-900 mb-8 leading-[1.1]">
+                        Pourquoi choisir <span class="text-indigo-600">WasiT Talaba</span> ?
+                    </h2>
+
+                    <div class="space-y-10">
+                        <div class="flex items-start gap-6 group">
+                            <div
+                                class="shrink-0 w-12 h-12 bg-white shadow-md text-indigo-600 rounded-full flex items-center justify-center font-bold text-lg group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                                01
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900 mb-2">Annonces Vérifiées</h3>
+                                <p class="text-slate-500 leading-relaxed">
+                                    Nous luttons contre les arnaques au logement en vérifiant manuellement chaque
+                                    annonce publiée.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-6 group">
+                            <div
+                                class="shrink-0 w-12 h-12 bg-white shadow-md text-indigo-600 rounded-full flex items-center justify-center font-bold text-lg group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                                02
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900 mb-2">Proximité des Écoles</h3>
+                                <p class="text-slate-500 leading-relaxed">
+                                    Filtrez vos recherches selon la distance réelle entre votre logement et votre campus
+                                    universitaire.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-6 group">
+                            <div
+                                class="shrink-0 w-12 h-12 bg-white shadow-md text-indigo-600 rounded-full flex items-center justify-center font-bold text-lg group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                                03
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900 mb-2">Processus 100% Digital</h3>
+                                <p class="text-slate-500 leading-relaxed">
+                                    Contactez les bailleurs ou les entreprises directement via la plateforme sans
+                                    intermédiaire.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex items-start gap-6 group">
-                    <div class="shrink-0 w-12 h-12 bg-white shadow-md text-indigo-600 rounded-full flex items-center justify-center font-bold text-lg group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
-                        03
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Processus 100% Digital</h3>
-                        <p class="text-slate-500 leading-relaxed">
-                            Contactez les bailleurs ou les entreprises directement via la plateforme sans intermédiaire.
-                        </p>
-                    </div>
-                </div>
             </div>
-        </div>
-
-    </div>
-</section>
+        </section>
 
         <script>
             window.logements = @json($logements);
