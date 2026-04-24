@@ -1,9 +1,5 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-
-import Alpine from 'alpinejs'
-window.Alpine = Alpine
-Alpine.start()
+import { defineConfig } from 'vite'
+import laravel from 'laravel-vite-plugin'
 
 export default defineConfig({
     plugins: [
@@ -12,4 +8,4 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-});
+})

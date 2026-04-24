@@ -37,7 +37,7 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            @if (auth()->user()->role === 'admin')
+                            @if (auth()->check() && auth()->user()->role === 'admin')
                                 <x-dropdown-link :href="route('admin.dashboard')"
                                     class="text-indigo-600 font-bold hover:bg-indigo-50 hover:text-indigo-800">
 
@@ -115,7 +115,7 @@
 
             <hr>
 
-            @if (auth()->user()->role === 'admin')
+            @if (auth()->check() && auth()->user()->role === 'admin')
                 <x-dropdown-link :href="route('admin.dashboard')"
                     class="text-indigo-600 font-bold hover:bg-indigo-50 hover:text-indigo-800">
 
